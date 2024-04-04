@@ -27,7 +27,7 @@ function updateBatteryStatus(battery){
 
 // STEP 2a: Using the getBattery() method of the navigator object, 
 //create a promise to retrieve the battery information
-if (!navigator.getBattery()) {
+if (!navigator.getBattery) {
     console.log('Battery Status API is not supported in this environment.');
 } else {
     navigator.getBattery().then(battery => {
