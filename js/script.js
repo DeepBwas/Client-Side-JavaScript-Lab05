@@ -27,8 +27,8 @@ function updateBatteryStatus(battery){
 
 // STEP 2a: Using the getBattery() method of the navigator object, 
 //create a promise to retrieve the battery information
-navigator.getBattery().then(battery => {
-    // STEP 2b: See what the battery object contains
+if (navigator.getBattery) {
+    navigator.getBattery().then(battery => {
     // STEP 3d: Update the battery information when the promise resolves
     updateBatteryStatus(battery);
     // STEP 4a: Event listener for changes to the charging status
@@ -39,6 +39,8 @@ navigator.getBattery().then(battery => {
     battery.addEventListener('levelchange', () => {
         updateBatteryStatus(battery);
     });
-})
-
+    });
+} else {
+    console.log('Battery Status API is not supported in this environment.');
+}
 /* This script adapted from the excellent code examples found at https://www.w3.org/TR/battery-status/#examples and https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API */
