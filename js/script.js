@@ -7,6 +7,8 @@ const chargeLevel = document.querySelector('#battery dd:nth-of-type(2) output');
 // STEP 1c: Grab the <progress> element inside the second <dd> element for a more graphical representation of the battery's state of charge (SOC)
 const chargeMeter = document.querySelector('#battery dd:nth-of-type(2) progress');
 
+const roboImg = document.getElementById('#roboImg');
+
 /* Functions
 -------------------------------------------------- */
 // STEP 3a: Create the updateBatteryStatus() function
@@ -17,6 +19,8 @@ function updateBatteryStatus(battery){
     // STEP 3c: Update the charge level
     chargeLevel.textContent = (battery.level * 100) + '%';
     chargeMeter.value = (battery.level * 100);
+    // STEP 5: Change the robot image based on the battery level
+    roboImg.setAttribute('src', `https://robohash.org/${(battery.level * 100)}.png?set=set2`);
 }
 
 // STEP 2a: Using the getBattery() method of the navigator object, 
